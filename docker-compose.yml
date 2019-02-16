@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  me.svc:
+    image: ${DOCKER_REGISTRY-}mesvc
+    build:
+      context: .
+      dockerfile: Me.Svc/Dockerfile
+  sql:
+    image: microsoft/mssql-server-linux
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password123
+      - MSSQL_PID=Developer
+    ports:
+      - "4020:1433"
